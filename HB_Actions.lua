@@ -50,7 +50,7 @@ function actions.get_defensive_action()
 		while (not dbuffq:empty()) do
 			local dbact = dbuffq:pop()
 			--table.vprint({dbact})
-			atcd(123, 'Debuff queued to remove: ' .. dbact.debuff.en)
+			atcd(123, 'Debuff popped to remove: ' .. dbact.debuff.en)
 			local ign = buffs.ignored_debuffs[dbact.debuff.en]	
 			if not ((ign ~= nil) and ((ign.all == true) or ((ign[dbact.name] ~= nil) and (ign[dbact.name] == true)))) then
 						
