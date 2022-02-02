@@ -34,6 +34,7 @@ end
 --]]
 function actions.get_defensive_action()
 	local action = {}
+	local targets = hb.getMonitoredPlayers()
 	
 	if (not settings.disable.cure) then
 		local cureq = CureUtils.get_cure_queue()
@@ -52,19 +53,20 @@ function actions.get_defensive_action()
 			--table.vprint({dbact})
 			atcd(123, 'Debuff popped to remove: ' .. dbact.debuff.en)
 			local ign = buffs.ignored_debuffs[dbact.debuff.en]	
+			
 			if not ((ign ~= nil) and ((ign.all == true) or ((ign[dbact.name] ~= nil) and (ign[dbact.name] == true)))) then
 						
-				-- Added this to disable just Erase
+				-- Erase disable toggle
 				if (dbact.action.en == 'Erase') then
 					if (not settings.disable.erase) then
 						local_queue_insert(dbact.action.en, dbact.name)
-						if (action.debuff == nil) and healer:in_casting_range(dbact.name) and healer:ready_to_use(dbact.action) then
+						if (action.debuff == nil) and healer:in_casting_range(dbact.name) and healer:ready_to_use(dbact.action) and not(targets[dbact.name].hpp == 0) then
 							action.debuff = dbact
 						end
 					end
 				else
 					local_queue_insert(dbact.action.en, dbact.name)
-					if (action.debuff == nil) and healer:in_casting_range(dbact.name) and healer:ready_to_use(dbact.action) then
+					if (action.debuff == nil) and healer:in_casting_range(dbact.name) and healer:ready_to_use(dbact.action) and not(targets[dbact.name].hpp == 0) then
 						action.debuff = dbact
 					end
 				end
@@ -79,12 +81,12 @@ function actions.get_defensive_action()
 		local buffq = buffs.getBuffQueue()
 		while (not buffq:empty()) do
 			local bact = buffq:pop()
-
+			
 			if (bact and bact.action and bact.action.en) then
 				local_queue_insert(bact.action.en, bact.name)
 			end
             
-			if (action.buff == nil) and healer:in_casting_range(bact.name) and healer:ready_to_use(bact.action) then
+			if (action.buff == nil) and healer:in_casting_range(bact.name) and healer:ready_to_use(bact.action) and not(targets[bact.name].hpp == 0) then
 				action.buff = bact
 			end
 		end
