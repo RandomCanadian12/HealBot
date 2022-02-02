@@ -110,7 +110,7 @@ function buffs.getDebuffQueue()
         for id, info in pairs(debuffs) do
 			local debuff = res.buffs[id]
 			local removalSpellName = debuff_map[debuff.en]
-			atcd(123,'REGULAR Removal debuff ID: ' .. id .. ' Target: ' .. targ)
+			atcd(123,'Removal debuff enqueue -  ID: ' .. id .. ' Target: ' .. targ)
 			if (removalSpellName ~= nil) then
 				if (info.attempted == nil) or ((now - info.attempted) >= 3) then
 					local spell = res.spells:with('en', removalSpellName)
