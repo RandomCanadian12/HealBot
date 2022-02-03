@@ -55,7 +55,6 @@ function actions.get_defensive_action()
 			local ign = buffs.ignored_debuffs[dbact.debuff.en]	
 			
 			if not ((ign ~= nil) and ((ign.all == true) or ((ign[dbact.name] ~= nil) and (ign[dbact.name] == true)))) then
-						
 				-- Erase disable toggle
 				if (dbact.action.en == 'Erase') then
 					if (not settings.disable.erase) then
@@ -66,13 +65,12 @@ function actions.get_defensive_action()
 					end
 				else
 					local_queue_insert(dbact.action.en, dbact.name)
-					if (action.debuff == nil) and healer:in_casting_range(dbact.name) and healer:ready_to_use(dbact.action) and not(targets[dbact.name].hpp == 0) then
+					if (action.debuff == nil) and healer:in_casting_range(dbact.name) and healer:ready_to_use(dbact.action) and not(targets[dbact.name].hpp == 0) and dbact.debuff.id ~= 20 then
 						action.debuff = dbact
 					end
 				end
-			
 			else
-				atcd(123, 'Ignored:  Name: ' .. dbact.name .. ' Debuff: ' .. dbact.debuff.en)
+				atcd(123, '***[Failsafe ignore_debuff caught]*** ->  Name: ' .. dbact.name .. ' Debuff: ' .. dbact.debuff.en .. ' ID: ' .. dbact.debuff.id)
 			end
 			
 		end
