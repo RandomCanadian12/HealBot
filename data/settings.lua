@@ -5,7 +5,7 @@ return {
     ['healing'] = {
         ['curaga_min_targets'] = 3,
         ['min'] = {
-            ['curaga'] = 1,
+            ['curaga'] = 3,
             ['cure'] = 3,
             ['waltz'] = 3,
             ['waltzga'] = 2
@@ -20,22 +20,22 @@ return {
             ['visible'] = true,
 			['font'] = 'consolas',
 			['size'] = 11,
-            ['x'] = 0,
-            ['y'] = 0
+            ['x'] = -17,
+            ['y'] = -710
         },
         ['actionQueue'] = {
             ['font'] = 'consolas',
             ['size'] = 10,
             ['visible'] = true,
-            ['x'] = -565,
-            ['y'] = 125,
+            ['x'] = -125,
+            ['y'] = -680
         },
         ['montoredBox'] = {
             ['font'] = 'consolas',
             ['size'] = 10,
             ['visible'] = true,
-            ['x'] = -200,
-            ['y'] = 425
+            ['x'] = -17,
+            ['y'] = -680
         },
         ['moveInfo'] = {
 			['font'] = 'consolas',
@@ -45,7 +45,7 @@ return {
             ['y'] = 18
         },
 		['bg'] = {
-            ['alpha'] = 50,
+            ['alpha'] = 150,
             ['blue'] = 0,
             ['green'] = 0,
             ['red'] = 0,
